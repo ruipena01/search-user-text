@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <style>
+      
+    </style>
+  </head>
+  <body>
+    <script>
+      //make a global variable that will hold the usertext value
+      var utext;
+      //Make a function called getstuff
+      function getstuff() {
+      //  get the value from the usertext id and save as utext
+      var utext = document.getElementById('usertext').value;
+      //  clear out the textarea
+      document.getElementById('usertext').value = "";
+      //  print out what the user put in the textarea to the screen
+      document.getElementById('dump').innerHTML = utext;
+      }
+      //Make a function called findstuff
+      function findstuff() {
+        //Get the value from the usersearch id
+        var check= document.getElementById('usersearch').value;
+        //Clear out the usersearch field
+        document.getElementById('usersearch').value = "";
+        //Create a regexp object
+        var x = new RegExp(check, "gi");
+        //Create a variable that searches the global variable and tries to match it
+        var res = utext.match(x);
+        //IF there is no result, tell the user "no result"
+        if (res == null) {
+          window.alert("No result")
+        }
+        //ELSE tell the user how many times it appears and output the values to the screen
+        else {
+          document.getElementById("searchdump").innerHTML = check + " appears " + res.length + " times in these variations " + res;
+        }
+      }
+    </script>
+    <textarea rows="10" cols="60" id="usertext"></textarea>
+    <button onCLick="getstuff()">Submit Text</button>
+    <input type="text" id="findstuff">
+    <button onClick="findstuff()">Find</button>
+    <p id = "dump"></p>
+    <p id = "searchdump"></p>
+  </body>
+</html>
